@@ -1,0 +1,47 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+
+    <AbsoluteLayout>
+        <StackLayout orientation="vertical">
+            <Image id="mainMenu" horizontalAlignment="left" src="res://menu" stretch="aspectFit" />
+            <Image id="mainLogo" horizontalAlignment="center" src="res://icon" stretch="aspectFit" />
+
+            <GridLayout id="mainSearchContainer" columns="30, 8*, 2*, 30">
+                <TextField text="" col="1" id="mainSearch" hint="Search" autocorrect="false" autocapitalizationType="none" />
+                <Button class="searchBtn" col="2" text="" tap="register" />
+            </GridLayout>
+
+            <GridLayout id="mainModuleContainer" columns="5*, *, 5*">
+                <AbsoluteLayout tap="toggleAct" class="extModule l" row="0" toggled="false">
+                    <Image src="https://vidalactus.vidal.fr/public/images/actus/144x95/CARBOPLATINE_injectable_Hospira_Pfizer_ANSM_VIDAL_rupture_stock_flacon_45_mL_ADN_cytostatique.jpg" stretch="fill" />
+                    <StackLayout id="actBackground">
+
+                    </StackLayout>
+                    <StackLayout id="actLabelContainer" height="{{ actHeight }}">
+                        <Label textWrap="true">
+                            <FormattedString>
+                                <Span class="bold" text="CARBOPLATINE HOSPIRA" fontAttributes="Bold"></Span>
+                                <Span text=" 10mg/mL solution injectable [...]"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+
+                </AbsoluteLayout>
+                <AbsoluteLayout class="extModule r" row="0" col="2">
+                    <Label text="Toxin Module" />
+                </AbsoluteLayout>
+            </GridLayout>
+        </StackLayout>
+
+        <GridLayout loaded="onLoad" columns="*, *, *" rows="*, *, *">
+            <Label text="Acc1" col="0" row="0" background="red"/>
+            <Label text="Acc2" col="1" row="0" background="green"/>
+            <Label text="Acc3" col="2" row="0" background="teal"/>
+            <Label text="Acc4" col="0" row="1" background="pink"/>
+            <Label text="Acc5" col="1" row="1" background="yellow"/>
+            <Label text="Acc6" col="2" row="1" background="blue"/>
+            <Label text="Acc7" col="0" row="2" background="grey"/>
+            <Label text="Acc8" col="1" row="2" background="orange"/>
+            <Label text="Acc9" col="2" row="2" background="brown"/>
+        </GridLayout>
+    </AbsoluteLayout>
+</Page>

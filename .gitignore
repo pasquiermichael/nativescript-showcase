@@ -1,0 +1,7 @@
+*.idea
+App_Resources/
+node_modules/
+platforms/
+app/shared/config.json
+
+

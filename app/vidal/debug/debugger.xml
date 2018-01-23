@@ -1,0 +1,3 @@
+<StackLayout id="debug-mini" fulled="{{ fulled }}" backgroundColor="green" width="{{ dwidth }}" height="{{ dheight }}" right="0" top="500">
+    <Label loaded="onLoad" tap="tap" text="D" />
+</StackLayout>
