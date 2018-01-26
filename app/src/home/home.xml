@@ -12,7 +12,7 @@
 
             <GridLayout id="mainModuleContainer" columns="5*, *, 5*">
                 <AbsoluteLayout tap="toggleAct" class="extModule l" row="0" toggled="false">
-                    <Image src="https://vidalactus.vidal.fr/public/images/actus/144x95/CARBOPLATINE_injectable_Hospira_Pfizer_ANSM_VIDAL_rupture_stock_flacon_45_mL_ADN_cytostatique.jpg" stretch="fill" />
+                    <Image src="https://vidalactus.vidal.fr/public/images/actus/144x95/CARBOPLATINE_injectable_Hospira_Pfizer_ANSM_VIDAL_rupture_stock_flacon_45_mL_ADN_cytostatique.jpg" stretch="aspectFill" />
                     <StackLayout id="actBackground">
 
                     </StackLayout>

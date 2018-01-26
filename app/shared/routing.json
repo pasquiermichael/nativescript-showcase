@@ -1,0 +1,10 @@
+{
+  "main":
+  {
+    "news":
+    {
+      "list":"./src/news/list/news",
+      "detail":"~/src/news/detail/detail"
+    }
+  }
+}

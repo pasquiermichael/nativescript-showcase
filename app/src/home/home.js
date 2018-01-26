@@ -3,6 +3,7 @@ var enums = require("ui/enums");
 var createViewModel = require("./home-view-model").createViewModel;
 var timerModule = require("timer");
 var frameModule = require("ui/frame");
+var routing = require('../../shared/routing.json');
 
 var homeModel;
 var page;
@@ -31,7 +32,7 @@ exports.toggleAct = function(e){
     var p = e.object;
     timerModule.clearInterval(idTimer);
     // Path system a faire
-    frameModule.topmost().navigate("./src/news/news");
+    frameModule.topmost().navigate("./src/news/list/news");
 };
 
 

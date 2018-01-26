@@ -1,0 +1,7 @@
+﻿
+StackLayout.newsDescOverlay{ width:100%;}
+StackLayout.newsDescBg{ width:100%; background:#5c687c;  opacity:0.75;}
+GridLayout.item-template-style Label{color:#F8F8F8;}
+#mainContainer{ padding:0; margin:0;}
+GridLayout.item-template-style Label.title{padding:5 5 0 5;}
+GridLayout.item-template-style Label.type{padding:1 5 5 5; font-style: italic;}
