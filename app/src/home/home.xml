@@ -1,35 +1,53 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
-
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+      xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
+      navigatingTo="onNavigatingTo" class="page"
+      xmlns:rsd="src/menus"
+      xmlns:rsdc="src/menus/controls">
     <AbsoluteLayout>
         <StackLayout orientation="vertical">
-            <Image id="mainMenu" horizontalAlignment="left" src="res://menu" stretch="aspectFit" />
-            <Image id="mainLogo" horizontalAlignment="center" src="res://icon" stretch="aspectFit" />
+            <nsDrawer:RadSideDrawer id="sideDrawer">
+                <nsDrawer:RadSideDrawer.drawerContent>
+                    <rsd:side-menu />
+                </nsDrawer:RadSideDrawer.drawerContent>
+                <nsDrawer:RadSideDrawer.mainContent>
+                    <StackLayout >
+                        <rsdc:side-menu-controls-nobar name="eeee"/>
+                        <Image id="mainLogo" horizontalAlignment="center" src="res://icon" stretch="aspectFit" />
 
-            <GridLayout id="mainSearchContainer" columns="30, 8*, 2*, 30">
-                <TextField text="" col="1" id="mainSearch" hint="Search" autocorrect="false" autocapitalizationType="none" />
-                <Button class="searchBtn" col="2" text="" tap="register" />
-            </GridLayout>
+                        <GridLayout id="mainSearchContainer" columns="30, 8*, 2*, 30">
+                            <TextField text="" col="1" id="mainSearch" hint="Search" autocorrect="false" autocapitalizationType="none" />
+                            <Button class="searchBtn" col="2" text="" tap="register" />
+                        </GridLayout>
 
-            <GridLayout id="mainModuleContainer" columns="5*, *, 5*">
-                <AbsoluteLayout tap="toggleAct" class="extModule l" row="0" toggled="false">
-                    <Image src="https://vidalactus.vidal.fr/public/images/actus/144x95/CARBOPLATINE_injectable_Hospira_Pfizer_ANSM_VIDAL_rupture_stock_flacon_45_mL_ADN_cytostatique.jpg" stretch="aspectFill" />
-                    <StackLayout id="actBackground">
+                        <GridLayout id="mainModuleContainer" columns="5*, *, 5*">
+                            <AbsoluteLayout tap="toggleAct" class="extModule l" row="0" toggled="false">
+                                <Image src="https://vidalactus.vidal.fr/public/images/actus/144x95/CARBOPLATINE_injectable_Hospira_Pfizer_ANSM_VIDAL_rupture_stock_flacon_45_mL_ADN_cytostatique.jpg" stretch="aspectFill" />
+                                <StackLayout id="actBackground">
 
+                                </StackLayout>
+                                <StackLayout id="actLabelContainer" height="{{ actHeight }}">
+                                    <Label textWrap="true">
+                                        <Label.formattedText>
+                                            <FormattedString>
+                                                <FormattedString.spans>
+                                                    <Span class="bold" text="CARBOPLATINE HOSPIRA"></Span>
+                                                    <Span text=" 10mg/mL solution injectable [...]"></Span>
+                                                </FormattedString.spans>
+                                            </FormattedString>
+                                        </Label.formattedText>
+                                    </Label>
+                                </StackLayout>
+
+                            </AbsoluteLayout>
+                            <AbsoluteLayout class="extModule r" row="0" col="2">
+                                <Label text="Toxin Module" />
+                            </AbsoluteLayout>
+                        </GridLayout>
                     </StackLayout>
-                    <StackLayout id="actLabelContainer" height="{{ actHeight }}">
-                        <Label textWrap="true">
-                            <FormattedString>
-                                <Span class="bold" text="CARBOPLATINE HOSPIRA" fontAttributes="Bold"></Span>
-                                <Span text=" 10mg/mL solution injectable [...]"></Span>
-                            </FormattedString>
-                        </Label>
-                    </StackLayout>
+                </nsDrawer:RadSideDrawer.mainContent>
+            </nsDrawer:RadSideDrawer>
 
-                </AbsoluteLayout>
-                <AbsoluteLayout class="extModule r" row="0" col="2">
-                    <Label text="Toxin Module" />
-                </AbsoluteLayout>
-            </GridLayout>
+
         </StackLayout>
 
         <GridLayout loaded="onLoad" columns="*, *, *" rows="*, *, *">

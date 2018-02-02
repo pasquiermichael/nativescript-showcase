@@ -1,0 +1,29 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" class="details" loaded="loadedHandler" navigatingTo="navigatingToHandler"
+      xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
+      xmlns:rsd="src/menus"
+      xmlns:ab="src/action-bar">
+
+    <ab:action-bar title="{{ decoded_title }}"/>
+
+    <nsDrawer:RadSideDrawer id="sideDrawer">
+        <nsDrawer:RadSideDrawer.drawerContent>
+            <rsd:side-menu />
+        </nsDrawer:RadSideDrawer.drawerContent>
+        <nsDrawer:RadSideDrawer.mainContent>
+        <ScrollView>
+            <FlexboxLayout flexDirection="column">
+                <GridLayout rows="auto, 30" columns="*, *">
+                    <Label text="{{ decoded_title }}" class="title" textWrap="true" row="0" col="0" colSpan="2"/>
+                    <Label text="{{ 'Par ' + name_user + ' ' + firstname_user}} " row="1" col="0" class="author"/>
+                    <Label text="{{ 'Le ' + formated_date }}" row="1" col="1" class="date"/>
+                </GridLayout>
+                <FlexboxLayout flexDirection="column" class="content">
+                    <HtmlView html="{{ summary_news }}"/>
+                    <Image src="{{ image }}"/>
+                    <HtmlView html="{{ content_news }}"/>
+                </FlexboxLayout>
+            </FlexboxLayout>
+        </ScrollView>
+        </nsDrawer:RadSideDrawer.mainContent>
+    </nsDrawer:RadSideDrawer>
+</Page>

@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoad" navigatingTo="onNavigatingTo" class="page"
+      xmlns:lv="nativescript-pro-ui/listview">
+    <ActionBar id="ab" title="News">
+        <Label text="VIDAL NEWS" />
+    </ActionBar>
+
+    <GridLayout id="mainContainer">
+    <Label text="aazea" />
+    <ActivityIndicator id="loading" busy="{{ isLoading }}" width="400" height="400"/>
+    <lv:RadListView items="{{ news }}" itemTap="tapHandler" pullToRefresh="true" pullToRefreshInitiated="onPTRInit">
+        <lv:RadListView.listViewLayout>
+            <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="2"/>
+            <!--<lv:ListViewStaggeredLayout scrollDirection="Vertical" spanCount="2"/>-->
+        </lv:RadListView.listViewLayout>
+        <lv:RadListView.itemTemplate>
+                <GridLayout class="item-template-style" columns="*" rows="auto, auto, auto">
+                    <Image src="{{ images[0].url_image }}" height="120" rowspan="3" opacity="0" loaded="imageLoadedHandler" stretch="aspectFill"/>
+                    <GridLayout verticalAlignment="bottom" row="0" col="0" columns="*" rowspan="2">
+                        <StackLayout class="newsDescBg" rowspan="2">
+                        </StackLayout>
+                        <StackLayout>
+                            <Label class="title" text="{{ abr_title + '...' }}" textWrap="true" />
+                            <Label class="type" text="{{ 'Dans ' + type.decoded_name + ' le ' + formated_date }}" textWrap="true" />
+                        </StackLayout>
+                    </GridLayout>
+                </GridLayout>
+        </lv:RadListView.itemTemplate>
+    </lv:RadListView>
+    </GridLayout>
+</Page>

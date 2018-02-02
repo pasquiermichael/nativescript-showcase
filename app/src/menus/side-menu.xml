@@ -1,0 +1,12 @@
+
+<StackLayout id="sideMenuInner" backgroundColor="gray">
+    <StackLayout height="300" style="text-align: center; vertical-align: center;">
+        <Label text="Navigation Menu"/>
+    </StackLayout>
+    <StackLayout>
+        <Label text="Primarygg" padding="10" backgroundColor="lightgray"/>
+        <Label text="Close Drawer" padding="10" style="horizontal-align: center" tap="toggleDrawer"/>
+    </StackLayout>
+    <StackLayout>
+    </StackLayout>
+</StackLayout>

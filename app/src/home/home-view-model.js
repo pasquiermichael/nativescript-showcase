@@ -11,6 +11,7 @@ function getMessage(counter) {
 
 function createViewModel() {
     var viewModel = new Observable();
+    viewModel.template = "menus/side-menu";
     viewModel.actHeight = "100%";
     viewModel.counter = 42;
     viewModel.message = getMessage(viewModel.counter);

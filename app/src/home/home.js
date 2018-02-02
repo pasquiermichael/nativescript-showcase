@@ -4,7 +4,7 @@ var createViewModel = require("./home-view-model").createViewModel;
 var timerModule = require("timer");
 var frameModule = require("ui/frame");
 var routing = require('../../shared/routing.json');
-
+var sideDrawer = require("nativescript-pro-ui/sidedrawer");
 var homeModel;
 var page;
 var idTimer;
@@ -21,6 +21,9 @@ function onNavigatingTo(args) {
         console.log("setInterval");
         toggleActHandler();
     }, 8000);
+
+    // appCache.setString("gloug", "somedata", false);
+    // appCache.setString("gloug_t_", new Date().toUTCString());
 }
 
 exports.onLoad = function(e){
@@ -32,11 +35,15 @@ exports.toggleAct = function(e){
     var p = e.object;
     timerModule.clearInterval(idTimer);
     // Path system a faire
-    frameModule.topmost().navigate("./src/news/list/news");
+    frameModule.topmost().navigate(routing.main.news.list);
 };
 
 
+
+
 exports.onNavigatingTo = onNavigatingTo;
+
+
 
 function toggleActHandler(p) {
     var labelCont = page.getViewById("actLabelContainer");
@@ -58,6 +65,7 @@ function toggleActHandler(p) {
     animateAct(labelCont, y, backgroundCont, o);
 }
 
+
 function animateAct(element, elementVal, bgElement, bgElementVal) {
     element.animate({
         translate:{y:elementVal, x:0},
@@ -70,3 +78,4 @@ function animateAct(element, elementVal, bgElement, bgElementVal) {
         duration:750
     })
 }
+

@@ -5,7 +5,7 @@ var config = require('../../shared/config.json');
 
 class NewsModel {
     constructor() {
-        this.newsList = null;
+
     }
 
     getAllNews(order) {
@@ -24,7 +24,7 @@ class NewsModel {
                     r.results[i].author.firstname_user = he.decode(r.results[i].author.firstname_user);
                     r.results[i].formated_date = formatDate(r.results[i].publication_date_news);
                     r.results[i].abr_title = r.results[i].decoded_title.substring(0,50);
-
+                    r.results[i].image = r.results[i].images[0].url_image;
                     r.results[i].index = cIndex;
                     r.results[i].hg = Math.floor(Math.random() * (480 - 120) + 120);
                     if(i%2 === 0) {
