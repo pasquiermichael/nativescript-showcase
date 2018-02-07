@@ -1,13 +1,10 @@
 var observableModule = require("data/observable");
 var NewsViewModel = require("./news-view-model");
-var frameModule = require("ui/frame");
 var page;
-var routing = require('../../../shared/routing.json');
 var timerModule = require("timer");
-
+var router = require("../../../vidal/router/router");
 
 var newsModel = NewsViewModel.newsViewModel;
-
 
 var pageData = new observableModule.fromObject({
     news: newsModel,
@@ -15,9 +12,6 @@ var pageData = new observableModule.fromObject({
 });
 
 function onNavigatingTo(args) {
-    console.log("onNavigating");
-    // appSettings.remove("listData");
-
     page = args.object;
     page.bindingContext = pageData;
     newsModel.empty();
@@ -40,8 +34,6 @@ exports.imageLoadedHandler = function(e){
 };
 
 exports.tapHandler = function(e){
-    console.log("tapHandler");
-
     var item = e.view.bindingContext;
     var index = newsModel.indexOf(item);
     var news = newsModel.getItem(index);
@@ -50,24 +42,34 @@ exports.tapHandler = function(e){
         return;
     }
 
-    frameModule.topmost().navigate({
-        moduleName:routing.main.news.detail,
-        transition:{
-            name: "slide",
-            duration: 150,
-            curve: "easeOut"
-        },
-        bindingContext:news
-    });
+    var transition = {
+        name: "slide",
+        duration: 1000,
+        curve: "easeOut"
+    };
+
+    router.navigateTo("news_detail", news, true, transition);
+
 };
 
 exports.onPTRInit = function(e){
     timerModule.setTimeout(function(){
-        var listview = e.object;
-        // newsModel.empty();
-        newsModel.loadNews(true).then(function(e){
-            listview.notifyPullToRefreshFinished();
+        e.object.animate({
+            opacity:1,
+            duration:500
         });
+        var listview = e.object;
+
+        listview.animate({
+            opacity:0,
+            duration:200
+        }).then(function(){
+            newsModel.empty();
+            newsModel.loadNews(true).then(function(e){
+                listview.notifyPullToRefreshFinished();
+            });
+        });
+
     }, 1500);
 };
 

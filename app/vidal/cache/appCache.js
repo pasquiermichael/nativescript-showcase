@@ -8,7 +8,7 @@ module.exports = {
         appSettings.setString(id, data);
         appSettings.setString(id+"_t_", currDate.toLocaleString());
     },
-    getString:function(id, forceRefresh = false) {
+    getString:function(id, forceRefresh = false, cacheLife = CACHE_LIFETIME) {
         if(forceRefresh === true && connectivity.getConnectionType() !== connectivity.connectionType.none) {
             console.log("Forcing refresh...");
         } else {
@@ -24,7 +24,7 @@ module.exports = {
                 var timeElapsed = currDate - dataDate;
                 console.log("time elapsed in minutes: "+timeElapsed/1000/60);
 
-                if(timeElapsed >= CACHE_LIFETIME && connectivity.getConnectionType() !== connectivity.connectionType.none) {
+                if(timeElapsed >= cacheLife && connectivity.getConnectionType() !== connectivity.connectionType.none) {
                     return;
                 }
 

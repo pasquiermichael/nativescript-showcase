@@ -5,16 +5,30 @@ Image#mainMenu { width:35; height:35; margin:10 0 0 10; }
 #mainSearchContainer { height:60; }
 .searchBtn { width:60; height:60; margin-left:10; background-image: url('res://search'); background-repeat: no-repeat;  background-size:contain;}
 AbsoluteLayout { background-color:#F8F8F8; }
-AbsoluteLayout.extModule {width:100%; border-width: 2; border-color:#e0e0e0; border-style: solid; background: rgba(255, 243, 248, 0.59); height:140; margin-left:20; margin-right:20;}
-AbsoluteLayout.extModule.l { margin-right:10; background:#F8F8F8;}
-AbsoluteLayout.extModule.r { margin-left:10;}
-AbsoluteLayout.extModule Label { font-size:20; font-family: zn; }
+AbsoluteLayout.extModule {width:100%; border-width: 2; border-color:#e0e0e0; border-style: solid; background: rgba(255, 243, 248, 0.59); margin-left:20; margin-right:20;}
+AbsoluteLayout.extModule.l {  background: #990039; }
+AbsoluteLayout.extModule.r { }
+AbsoluteLayout.extModule.r { background: #dadadd;}
+AbsoluteLayout.extModule Label { font-size:30; font-family: zn; padding:4;}
 AbsoluteLayout.extModule StackLayout { width:100%; height:100%; padding:5 5 10 5;}
-AbsoluteLayout.extModule #actBackground { background:#00aafc; padding:0; opacity:0.7;}
+AbsoluteLayout.extModule #actBackground { background:#00aafc; padding:0; opacity:0.5;}
 AbsoluteLayout.extModule Image {width:100%; height:100%;}
-#mainModuleContainer { padding:30 12 30 12; height:180;}
+#mainModuleContainer { padding:30 12 10 12; }
 #actLabelContainer { height:100%; }
 GridLayout, StackLayout {width:100%; height:100%;}
 ListView{ width:100%; height:100%;}
+AbsoluteLayout.extModule.b { background: #990039; height:260;}
+
+
+
+/*GridLayout.extModule {width:100%; border-width: 2; border-color:#e0e0e0; border-style: solid; background: rgba(255, 243, 248, 0.59); height:140; }*/
+/*GridLayout.extModule.l { margin-right:10; background:#F8F8F8;}*/
+/*GridLayout.extModule.r { margin-left:10;}*/
+/*GridLayout.extModule.r {  background:#009c9b;}*/
+/*GridLayout.extModule Label { font-size:20; font-family: zn; padding:4;}*/
+/*GridLayout.extModule StackLayout { width:100%; height:100%; padding:5 5 10 5;}*/
+/*GridLayout.extModule #actBackground { background:#00aafc; padding:0; opacity:0.7;}*/
+/*GridLayout.extModule Image {width:100%; height:100%;}*/
+/*GridLayout.extModule.b { background:#996b5b; margin-left:30; margin-right:30;}*/
 
 

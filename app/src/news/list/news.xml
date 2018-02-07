@@ -6,7 +6,7 @@
 
     <ab:action-bar title="Vidal News"/>
 
-    <nsDrawer:RadSideDrawer id="sideDrawer">
+    <nsDrawer:RadSideDrawer id="sideDrawer" showOverNavigation="true">
         <nsDrawer:RadSideDrawer.drawerContent>
             <rsd:side-menu />
         </nsDrawer:RadSideDrawer.drawerContent>

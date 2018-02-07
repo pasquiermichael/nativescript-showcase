@@ -39,6 +39,21 @@ class NewsModel {
             });
         });
     }
+
+    getNewsById(id) {
+        var url = config.api.resources.url+"news/"+id+"?token="+config.api.resources.token;
+        var news = {};
+
+        return new Promise(function(resolve, reject) {
+            http.getJSON(url).then(function(r){
+                news.decoded_title = he.decode(r.results[0].title_news);
+                news.image = r.results[0].images[0].url_image;
+                resolve(news);
+            }, function(e){
+                reject(e);
+            });
+        });
+    }
 }
 
 

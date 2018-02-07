@@ -1,27 +1,16 @@
 var Observable = require("data/observable").Observable;
-// var config = require('../../shared/config');
+var ObservableArray = require("data/observable-array").ObservableArray;
+var NewsModel = require('../models/newsModel').NewsModel;
 
-function getMessage(counter) {
-    if (counter <= 0) {
-        return "Hoorraaay! You unlocked the NativeScript clicker achievement!";
-    } else {
-        return counter + " taps left";
-    }
-}
+class HomeViewModel extends ObservableArray{}
 
-function createViewModel() {
-    var viewModel = new Observable();
-    viewModel.template = "menus/side-menu";
-    viewModel.actHeight = "100%";
-    viewModel.counter = 42;
-    viewModel.message = getMessage(viewModel.counter);
+var viewModel = new HomeViewModel();
+var nModel = new NewsModel();
 
-    viewModel.onTap = function() {
-        this.counter--;
-        this.set("message", getMessage(this.counter));
-    };
+viewModel.getLastNews = function() {
+    return nModel.getNewsById(22565).then(function(result){
+        viewModel.set("news", result);
+    });
+};
 
-    return viewModel;
-}
-
-exports.createViewModel = createViewModel;
+exports.homeViewModel = viewModel;

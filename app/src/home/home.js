@@ -1,49 +1,59 @@
-
 var enums = require("ui/enums");
-var createViewModel = require("./home-view-model").createViewModel;
+var HomeViewModel = require("./home-view-model");
 var timerModule = require("timer");
-var frameModule = require("ui/frame");
-var routing = require('../../shared/routing.json');
-var sideDrawer = require("nativescript-pro-ui/sidedrawer");
 var homeModel;
 var page;
 var idTimer;
+var animationSet;
+var router = require("../../vidal/router/router");
+var animationModule = require("tns-core-modules/ui/animation");
 
-function onNavigatingTo(args) {
+const ANIM_TOGGLE_TIME = 4000;
 
+exports.onNavigatingTo = function(args) {
+    router.setCurrentStartingRoute();
     page = args.object;
     page.actionBarHidden = true;
 
-    homeModel = createViewModel();
+    homeModel = HomeViewModel.homeViewModel;
+    homeModel.getLastNews().then(function(e){
+
+    });
     page.bindingContext = homeModel;
 
     idTimer = timerModule.setInterval(function(e){
-        console.log("setInterval");
         toggleActHandler();
-    }, 8000);
-
-    // appCache.setString("gloug", "somedata", false);
-    // appCache.setString("gloug_t_", new Date().toUTCString());
-}
+    }, ANIM_TOGGLE_TIME);
+};
 
 exports.onLoad = function(e){
    e.object.set("visibility", "collapse");
+   var logo = page.getViewById("mainLogo");
+
+    animationSet = new animationModule.Animation([{
+        target: logo,
+        rotate: 360,
+        duration: 100,
+        iterations: Number.POSITIVE_INFINITY,
+        curve: enums.AnimationCurve.linear
+    }]);
+};
+
+exports.logoDTapHandler = function(e){
+    console.log(animationSet.isPlaying);
+    if (animationSet.isPlaying !== true) {
+        animationSet.play().catch(function (e) {
+            console.log("Animation stopped!");
+        });
+    } else {
+        animationSet.cancel();
+    }
 };
 
 exports.toggleAct = function(e){
-    console.log("toggleAct");
-    var p = e.object;
     timerModule.clearInterval(idTimer);
-    // Path system a faire
-    frameModule.topmost().navigate(routing.main.news.list);
+    router.navigateTo("news_list");
 };
-
-
-
-
-exports.onNavigatingTo = onNavigatingTo;
-
-
 
 function toggleActHandler(p) {
     var labelCont = page.getViewById("actLabelContainer");
@@ -54,7 +64,7 @@ function toggleActHandler(p) {
     var o;
     if (parentCont.get("toggled") === true) {
         y = 0;
-        o = 0.7;
+        o = 0.5;
         parentCont.set("toggled", false);
     } else {
         y = parentCont.height * -1;
@@ -64,7 +74,6 @@ function toggleActHandler(p) {
 
     animateAct(labelCont, y, backgroundCont, o);
 }
-
 
 function animateAct(element, elementVal, bgElement, bgElementVal) {
     element.animate({
