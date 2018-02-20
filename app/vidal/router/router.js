@@ -1,8 +1,7 @@
 var route = require("../../shared/route");
 var topmost = require("ui/frame").topmost;
-var appSettings = require("application-settings");
 
-const CURRENT_ROUTE = "currentRoute";
+const DEFAULT_ROUTE = "home";
 
 module.exports = {
     navigateTo:function(routeName, binding, animation, animTransition){
@@ -10,7 +9,8 @@ module.exports = {
 
         var nav = {
             moduleName: routePath,
-            bindingContext: binding
+            //bindingContext: binding,
+            context: binding
         };
 
         if (animation === true) {
@@ -19,16 +19,16 @@ module.exports = {
             nav.transition = animTransition;
         }
 
-        appSettings.setString(CURRENT_ROUTE, routeName);
+        global.currentRoute = routeName;
         topmost().navigate(nav);
     },
 
     getCurrentRoute:function(){
-        return appSettings.getString(CURRENT_ROUTE);
+        return global.currentRoute;
     },
 
     setCurrentStartingRoute:function(){
-        appSettings.setString(CURRENT_ROUTE, "home");
+        global.currentRoute = DEFAULT_ROUTE;
     }
 };
 

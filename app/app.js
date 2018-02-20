@@ -6,6 +6,7 @@ purpose of the file is to pass control to the app’s first module.
 
 require("./bundle-config");
 var application = require("application");
+global.currentRoute = '';
 
 application.start({ moduleName: "src/home/home" });
 

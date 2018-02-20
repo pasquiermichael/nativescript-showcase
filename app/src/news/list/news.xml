@@ -13,7 +13,7 @@
         <nsDrawer:RadSideDrawer.mainContent>
 
             <GridLayout id="mainContainer">
-            <ActivityIndicator id="loading" busy="{{ isLoading }}" width="400" height="400"/>
+            <ActivityIndicator id="loading" busy="{{ isLoading }}" width="50" height="50"/>
             <lv:RadListView items="{{ news }}" itemTap="tapHandler" pullToRefresh="true" pullToRefreshInitiated="onPTRInit">
                 <lv:RadListView.listViewLayout>
                     <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="2"/>

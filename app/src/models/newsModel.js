@@ -2,6 +2,7 @@ var http = require('http');
 var he = require('he');
 var dictionary = require('../../shared/dictionnary');
 var config = require('../../shared/config.json');
+var api = require('../../vidal/api/api');
 
 class NewsModel {
     constructor() {
@@ -9,7 +10,6 @@ class NewsModel {
     }
 
     getAllNews(order) {
-        console.log("getAllNews");
         order = order || 'publication_date_news:desc';
         var url = config.api.resources.url+"news?order="+order+"&token="+config.api.resources.token;
         var news;
@@ -40,22 +40,32 @@ class NewsModel {
         });
     }
 
-    getNewsById(id) {
-        var url = config.api.resources.url+"news/"+id+"?token="+config.api.resources.token;
-        var news = {};
+    getNews(number=1) {
+        var url = config.api.resources.url+"news?replies="+number+"&token="+config.api.resources.token;
 
-        return new Promise(function(resolve, reject) {
-            http.getJSON(url).then(function(r){
+        return new Promise(function(resolve, reject){
+            api.callUrl(url).then(function(r){
+                var news = {};
                 news.decoded_title = he.decode(r.results[0].title_news);
                 news.image = r.results[0].images[0].url_image;
                 resolve(news);
-            }, function(e){
-                reject(e);
+            });
+        });
+    }
+
+    getNewsById(id) {
+        var url = config.api.resources.url+"news/"+id+"?token="+config.api.resources.token;
+        // var news = {};
+        return new Promise(function(resolve, reject){
+            api.callUrl(url).then(function(r){
+                var news = {};
+                news.decoded_title = he.decode(r.results[0].title_news);
+                news.image = r.results[0].images[0].url_image;
+                resolve(news);
             });
         });
     }
 }
-
 
 function formatDate(pDate){
     let d = pDate.split('-');

@@ -1,6 +1,6 @@
 var appSettings = require("application-settings");
 var connectivity = require("tns-core-modules/connectivity");
-var CACHE_LIFETIME = 19000000000;
+const DEFAULT_CACHE_LIFETIME = 1;
 
 module.exports = {
     setString:function(id, data) {
@@ -8,7 +8,7 @@ module.exports = {
         appSettings.setString(id, data);
         appSettings.setString(id+"_t_", currDate.toLocaleString());
     },
-    getString:function(id, forceRefresh = false, cacheLife = CACHE_LIFETIME) {
+    getString:function(id, forceRefresh = false, cacheLife = DEFAULT_CACHE_LIFETIME) {
         if(forceRefresh === true && connectivity.getConnectionType() !== connectivity.connectionType.none) {
             console.log("Forcing refresh...");
         } else {
@@ -32,15 +32,7 @@ module.exports = {
             }
 
             return appSettings.getString(id);
-            // var matches = d.match(/http(s)?:\/\/[a-zA-Z0-9\{\}\/\.\_\-]+\.(jpg|png)/g);
         }
-    },
-    parseTextForImg:function() {
-        this.imgCacheHandler();
-    },
-    imgCacheHandler:function() {
-
     }
-
 };
 

@@ -18,7 +18,7 @@ components that have the btn class name.
 */
 .btn { font-size: 18;}
 .bold {font-weight: bold;}
-
+.separator.medium{height:20; width:80%; margin-bottom:20; border-bottom-color: #990039; border-bottom-width:2; }
 
 .appIcon { font-family: "ionicons"; }
 #mainMenuBtn{ font-size:42px; margin:0 0 0 10; color:#9e9e9e;}

@@ -4,9 +4,15 @@ var frameModule = require("ui/frame");
 var observableModule = require("data/observable");
 var menu = require("../../shared/menu");
 var router = require("../../vidal/router/router");
+var route = require("../../shared/route");
 
 var page;
+
+const CURR_MENU_BTN_CLASS = "currentMmBtn";
+
 var pageData = new observableModule.fromObject({
+
+
 
 });
 
@@ -22,19 +28,19 @@ exports.toggleDrawer = function() {
 };
 
 function buildMenu(p) {
-    var sideMenu = menu["sideMenu"];
+    var sideMenu = route;
     var currentRoute = router.getCurrentRoute();
 
     for (var property in sideMenu) {
-        var btnId = sideMenu[property].id;
+        var btnId = sideMenu[property].id_menu;
         var exBtn = p.getViewById(btnId);
-        if(!exBtn) { // back button problem otherwise
+        if(!exBtn && sideMenu[property].in_menu === true) { // back button problem otherwise
             var btn = new Button();
-            btn.text = sideMenu[property].text;
-            btn.src = sideMenu[property].src;
+            btn.text = sideMenu[property].text_menu;
+            btn.src = property;
             btn.id = btnId;
-            if (currentRoute === sideMenu[property].src) {
-                btn.class = "currentMmBtn";
+            if (currentRoute === property) {
+                btn.class = CURR_MENU_BTN_CLASS;
             } else {
                 btn.on(Button.tapEvent, function(args){
                     navigateFromMenu(args);
@@ -46,5 +52,6 @@ function buildMenu(p) {
 }
 
 function navigateFromMenu(target) {
+    console.log(target.object.src);
     router.navigateTo(target.object.src, null, true);
 }

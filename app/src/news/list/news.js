@@ -13,13 +13,17 @@ var pageData = new observableModule.fromObject({
 
 function onNavigatingTo(args) {
     page = args.object;
+    pageData.set("isLoading", true);
+
     page.bindingContext = pageData;
     newsModel.empty();
 
-    pageData.set("isLoading", true);
-    newsModel.loadNews().then(function(e){
-        pageData.set("isLoading", false);
-    });
+    timerModule.setTimeout(function(){
+        newsModel.loadNews().then(function(e){
+            pageData.set("isLoading", false);
+        });
+    }, 100);
+
 }
 
 exports.onLoad = function(args){
@@ -44,7 +48,7 @@ exports.tapHandler = function(e){
 
     var transition = {
         name: "slide",
-        duration: 1000,
+        duration: 500,
         curve: "easeOut"
     };
 
@@ -70,7 +74,7 @@ exports.onPTRInit = function(e){
             });
         });
 
-    }, 1500);
+    }, 1000);
 };
 
 exports.onNavigatingTo = onNavigatingTo;

@@ -5,8 +5,9 @@ var homeModel;
 var page;
 var idTimer;
 var animationSet;
-var router = require("../../vidal/router/router");
+var router = require("~/vidal/router/router");
 var animationModule = require("tns-core-modules/ui/animation");
+var api = require("~/vidal/api/api");
 
 const ANIM_TOGGLE_TIME = 4000;
 
@@ -14,7 +15,6 @@ exports.onNavigatingTo = function(args) {
     router.setCurrentStartingRoute();
     page = args.object;
     page.actionBarHidden = true;
-
     homeModel = HomeViewModel.homeViewModel;
     homeModel.getLastNews().then(function(e){
 
@@ -27,7 +27,7 @@ exports.onNavigatingTo = function(args) {
 };
 
 exports.onLoad = function(e){
-   e.object.set("visibility", "collapse");
+   //e.object.set("visibility", "collapse");
    var logo = page.getViewById("mainLogo");
 
     animationSet = new animationModule.Animation([{
@@ -37,6 +37,11 @@ exports.onLoad = function(e){
         iterations: Number.POSITIVE_INFINITY,
         curve: enums.AnimationCurve.linear
     }]);
+
+    //api.callUrl(url).then(function(r){
+    //    console.log("callDone");
+    //});
+
 };
 
 exports.logoDTapHandler = function(e){
@@ -85,6 +90,6 @@ function animateAct(element, elementVal, bgElement, bgElementVal) {
     bgElement.animate({
         opacity:bgElementVal,
         duration:750
-    })
+    });
 }
 

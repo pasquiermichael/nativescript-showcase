@@ -1,6 +1,7 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
       xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
       navigatingTo="onNavigatingTo" class="page"
+      loaded="onLoad"
       xmlns:rsd="src/menus"
       xmlns:rsdc="src/menus/controls">
     <AbsoluteLayout>
@@ -10,7 +11,7 @@
                     <rsd:side-menu />
                 </nsDrawer:RadSideDrawer.drawerContent>
                 <nsDrawer:RadSideDrawer.mainContent>
-                    <StackLayout >
+                    <StackLayout>
                         <rsdc:side-menu-controls-nobar name="eeee"/>
                         <Image id="mainLogo" doubleTap="logoDTapHandler"  horizontalAlignment="center" src="res://icon" stretch="aspectFit" />
 
@@ -19,14 +20,14 @@
                             <Button class="searchBtn" col="2" text="" tap="register" />
                         </GridLayout>
 
-                        <GridLayout id="mainModuleContainer" columns="*, 10, *" rows="100, 10, 260">
-                            <AbsoluteLayout class="extModule l" row="0">
-                                <Label text="New module" style="text-align: center; vertical-align: center;"/>
-                            </AbsoluteLayout>
-                            <AbsoluteLayout class="extModule r" row="0" col="2">
-                                <Label text="Toxin Module" />
-                            </AbsoluteLayout>
-                            <AbsoluteLayout tap="toggleAct" class="extModule b" row="2" col="0" colSpan="3" toggled="false">
+                        <GridLayout id="mainModuleContainer" columns="*, 10, *" rows="260, 10, 100">
+                            <!--<AbsoluteLayout class="extModule l" row="0">-->
+                                <!--<Label text="New module" style="text-align: center; vertical-align: center;"/>-->
+                            <!--</AbsoluteLayout>-->
+                            <!--<AbsoluteLayout class="extModule r" row="0" col="2">-->
+                                <!--<Label text="Toxin Module" />-->
+                            <!--</AbsoluteLayout>-->
+                            <AbsoluteLayout tap="toggleAct" class="extModule b" row="0" col="0" colSpan="3" toggled="false">
                                 <Image src="{{ news.image }}" stretch="aspectFill" />
                                 <StackLayout id="actBackground">
 
@@ -82,20 +83,6 @@
                     </StackLayout>
                 </nsDrawer:RadSideDrawer.mainContent>
             </nsDrawer:RadSideDrawer>
-
-
         </StackLayout>
-
-        <GridLayout loaded="onLoad" columns="*, *, *" rows="*, *, *">
-            <Label text="Acc1" col="0" row="0" background="red"/>
-            <Label text="Acc2" col="1" row="0" background="green"/>
-            <Label text="Acc3" col="2" row="0" background="teal"/>
-            <Label text="Acc4" col="0" row="1" background="pink"/>
-            <Label text="Acc5" col="1" row="1" background="yellow"/>
-            <Label text="Acc6" col="2" row="1" background="blue"/>
-            <Label text="Acc7" col="0" row="2" background="grey"/>
-            <Label text="Acc8" col="1" row="2" background="orange"/>
-            <Label text="Acc9" col="2" row="2" background="brown"/>
-        </GridLayout>
     </AbsoluteLayout>
 </Page>

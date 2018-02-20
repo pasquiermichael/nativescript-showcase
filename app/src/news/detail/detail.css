@@ -1,0 +1,5 @@
+FlexboxLayout{padding:10;}
+FlexboxLayout Label.title{font-size:34; font-weight: bold; text-align: center;}
+FlexboxLayout Label.author{font-size:18; font-weight: bold; color:#000000; text-align: center;}
+FlexboxLayout Label.date{font-size:16; font-weight: bold; color:#000000; text-align: center;}
+FlexboxLayout HtmlView{font-size:50;}
