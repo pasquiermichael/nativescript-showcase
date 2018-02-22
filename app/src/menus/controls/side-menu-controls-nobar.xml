@@ -1,1 +1,0 @@
-<Label text="&#xf20e;" id="mainMenuBtn" class="appIcon" horizontalAlignment="left" tap="toggleDrawer" loaded="onLoad" />

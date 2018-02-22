@@ -25,8 +25,8 @@ module.exports = {
             var content = getContent(response);
             console.log(contentType);
 
-            if (statusCode !== 200) {
-                reject("noooo");
+            if (isNaN(statusCode) || statusCode !== 200) {
+                reject(statusCode);
                 //error code caching
             }
 
@@ -49,6 +49,7 @@ module.exports = {
             resolve(r);
         }, function(e){
                 // caching
+            reject(e);
            });
         });
     }

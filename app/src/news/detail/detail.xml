@@ -1,7 +1,8 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" class="details" loaded="loadedHandler" navigatingTo="navigatingToHandler"
       xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
       xmlns:rsd="src/menus"
-      xmlns:ab="src/action-bar">
+      xmlns:ab="src/action-bar"
+      xmlns:debug="vidal/debug">
 
     <ab:action-bar title="{{ news.decoded_title }}"/>
 
@@ -10,27 +11,30 @@
             <rsd:side-menu />
         </nsDrawer:RadSideDrawer.drawerContent>
         <nsDrawer:RadSideDrawer.mainContent>
-            <GridLayout>
-                <ScrollView id="newsDetailMainContent" opacity="{{ opacity }}">
-                    <FlexboxLayout flexDirection="column">
-                        <FlexboxLayout flexDirection="column" >
-                            <GridLayout rows="auto, 20, 30" columns="*, *">
-                                <Label text="{{ news.decoded_title }}" class="title" textWrap="true" row="0" col="0" colSpan="2"/>
-                                <Label text="" class="separator medium" row="1" colSpan="2"/>
-                                <Label text="{{ 'Par ' + news.name_user + ' ' + news.firstname_user}} " class="author"  row="2" col="0" />
-                                <Label text="{{ 'Le ' + news.formated_date }}" row="2" col="1" class="date"/>
-                            </GridLayout>
-                            <FlexboxLayout id="mainNewsDetailContent" flexDirection="column" class="content">
-                                <HtmlView html="{{ news.summary_news }}"/>
-                                <Image src="{{ news.image }}"/>
-                                <!--<HtmlView html="{{ news.content_news }}"/>-->
+            <AbsoluteLayout>
+                <GridLayout class="fullScreen">
+                    <ScrollView id="newsDetailMainContent" opacity="{{ opacity }}">
+                        <FlexboxLayout flexDirection="column">
+                            <FlexboxLayout flexDirection="column" >
+                                <GridLayout rows="auto, 20, 30" columns="*, *">
+                                    <Label text="{{ news.decoded_title }}" class="title" textWrap="true" row="0" col="0" colSpan="2"/>
+                                    <Label text="" class="separator medium" row="1" colSpan="2"/>
+                                    <Label text="{{ 'Par ' + news.name_user + ' ' + news.firstname_user}} " class="author"  row="2" col="0" />
+                                    <Label text="{{ 'Le ' + news.formated_date }}" row="2" col="1" class="date"/>
+                                </GridLayout>
+                                <FlexboxLayout id="mainNewsDetailContent" flexDirection="column" class="content">
+                                    <HtmlView html="{{ news.summary_news }}"/>
+                                    <Image src="{{ news.image }}"/>
+                                    <!--<HtmlView html="{{ news.content_news }}"/>-->
+                                </FlexboxLayout>
                             </FlexboxLayout>
                         </FlexboxLayout>
-                    </FlexboxLayout>
-                </ScrollView>
-                <!--<ActivityIndicator id="loading" busy="{{ isLoading }}" width="50" height="50"/>-->
-                <!--<Label text="LOADING..." visibility="{{ loadIndicator }}" />-->
-            </GridLayout>
+                    </ScrollView>
+                    <!--<ActivityIndicator id="loading" busy="{{ isLoading }}" width="50" height="50"/>-->
+                    <!--<Label text="LOADING..." visibility="{{ loadIndicator }}" />-->
+                </GridLayout>
+                <debug:debugger />
+            </AbsoluteLayout>
         </nsDrawer:RadSideDrawer.mainContent>
     </nsDrawer:RadSideDrawer>
 </Page>

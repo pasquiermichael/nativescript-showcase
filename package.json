@@ -14,7 +14,8 @@
     "nativescript-pro-ui": "^3.3.0",
     "nativescript-theme-core": "~1.0.4",
     "nativescript-xml2js": "^0.5.2",
-    "tns-core-modules": "^3.4.0"
+    "performance-now": "^2.1.0",
+    "tns-core-modules": "^3.4.1"
   },
   "devDependencies": {
     "babel-traverse": "6.26.0",

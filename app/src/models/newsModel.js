@@ -15,7 +15,7 @@ class NewsModel {
         var news;
 
         return new Promise(function(resolve, reject) {
-            http.getJSON(url).then(function(r){
+            api.callUrl(url).then(function(r){
                 var cIndex = 0;
                 for(var i = 0, max = r.results.length; i<max; i++){
                     r.results[i].decoded_title = he.decode(r.results[i].title_news);
@@ -49,6 +49,8 @@ class NewsModel {
                 news.decoded_title = he.decode(r.results[0].title_news);
                 news.image = r.results[0].images[0].url_image;
                 resolve(news);
+            }, function(error){
+                reject(error);
             });
         });
     }

@@ -1,29 +1,45 @@
 var enums = require("ui/enums");
 var HomeViewModel = require("./home-view-model");
 var timerModule = require("timer");
-var homeModel;
 var page;
 var idTimer;
 var animationSet;
 var router = require("~/vidal/router/router");
 var animationModule = require("tns-core-modules/ui/animation");
 var api = require("~/vidal/api/api");
+var observableModule = require("data/observable");
+
+var platformModule = require("tns-core-modules/platform");
+var debug = require("~/vidal/debug/debugger");
 
 const ANIM_TOGGLE_TIME = 4000;
+
+var homeModel = HomeViewModel.homeViewModel;
+
+var pageData = new observableModule.fromObject({
+    lastNews: homeModel,
+    dbOpened: false
+});
+
+exports.onNavigatingFrom = function(args) {
+    console.log("leaving page");
+    timerModule.clearInterval(idTimer);
+};
 
 exports.onNavigatingTo = function(args) {
     router.setCurrentStartingRoute();
     page = args.object;
     page.actionBarHidden = true;
-    homeModel = HomeViewModel.homeViewModel;
     homeModel.getLastNews().then(function(e){
 
     });
-    page.bindingContext = homeModel;
+    page.bindingContext = pageData;
 
     idTimer = timerModule.setInterval(function(e){
         toggleActHandler();
     }, ANIM_TOGGLE_TIME);
+
+    debug.trace("THIS IS WORKING !!!");
 };
 
 exports.onLoad = function(e){
@@ -56,11 +72,48 @@ exports.logoDTapHandler = function(e){
 };
 
 exports.toggleAct = function(e){
-    timerModule.clearInterval(idTimer);
     router.navigateTo("news_list");
 };
 
+exports.debugInit = function(e){
+    var realHeight = (platformModule.screen.mainScreen.heightPixels / platformModule.screen.mainScreen.scale);
+    var realWidth = (platformModule.screen.mainScreen.widthPixels / platformModule.screen.mainScreen.scale);
+
+    pageData.set("dbMTop", realHeight);
+
+    var debugMainContent = page.getViewById("debuggerMainContent");
+    //mieux dle faire sans animate mais est ce possibl ?
+    debugMainContent.animate({
+       translate: {x: realWidth, y: realHeight},
+       duration:100
+    });
+
+};
+
+exports.debugTap = function(e){
+    var realHeight = (platformModule.screen.mainScreen.heightPixels / platformModule.screen.mainScreen.scale);
+    var realWidth = (platformModule.screen.mainScreen.widthPixels / platformModule.screen.mainScreen.scale);
+
+    var debugMainContent = page.getViewById("debuggerMainContent");
+    var xPos = 0;
+    var yPos = 0;
+
+
+    if (pageData.dbOpened) {
+        xPos = realWidth;
+        yPos = realHeight;
+    }
+
+    debugMainContent.animate({
+        translate: {x: xPos, y: yPos},
+        duration:350
+    }).then(function(){
+        pageData.set("dbOpened", !pageData.dbOpened);
+    });
+};
+
 function toggleActHandler(p) {
+    console.log("toggleActHandler");
     var labelCont = page.getViewById("actLabelContainer");
     var parentCont = p || labelCont.parentNode;
     var backgroundCont = page.getViewById("actBackground");

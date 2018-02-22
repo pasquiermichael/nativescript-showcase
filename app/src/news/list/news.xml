@@ -2,6 +2,7 @@
       xmlns:lv="nativescript-pro-ui/listview"
       xmlns:nsDrawer="nativescript-pro-ui/sidedrawer"
       xmlns:rsd="src/menus"
+      xmlns:debug="vidal/debug"
       xmlns:ab="src/action-bar">
 
     <ab:action-bar title="Vidal News"/>
@@ -11,29 +12,31 @@
             <rsd:side-menu />
         </nsDrawer:RadSideDrawer.drawerContent>
         <nsDrawer:RadSideDrawer.mainContent>
-
-            <GridLayout id="mainContainer">
-            <ActivityIndicator id="loading" busy="{{ isLoading }}" width="50" height="50"/>
-            <lv:RadListView items="{{ news }}" itemTap="tapHandler" pullToRefresh="true" pullToRefreshInitiated="onPTRInit">
-                <lv:RadListView.listViewLayout>
-                    <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="2"/>
-                    <!--<lv:ListViewStaggeredLayout scrollDirection="Vertical" spanCount="2"/>-->
-                </lv:RadListView.listViewLayout>
-                <lv:RadListView.itemTemplate>
-                        <GridLayout class="item-template-style" columns="*" rows="auto, auto, auto">
-                            <Image src="{{ image }}" height="120" rowspan="3" opacity="0" loaded="imageLoadedHandler" stretch="aspectFill"/>
-                            <GridLayout verticalAlignment="bottom" row="0" col="0" columns="*" rowspan="2">
-                                <StackLayout class="newsDescBg" rowspan="2">
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label class="title" text="{{ abr_title + '...' }}" textWrap="true" />
-                                    <Label class="type" text="{{ 'Dans ' + decoded_name + ' le ' + formated_date }}" textWrap="true" />
-                                </StackLayout>
+            <AbsoluteLayout>
+                <GridLayout id="mainContainer" class="fullScreen">
+                <ActivityIndicator id="loading" busy="{{ isLoading }}" width="50" height="50"/>
+                <lv:RadListView items="{{ news }}" itemTap="tapHandler" pullToRefresh="true" pullToRefreshInitiated="onPTRInit">
+                    <lv:RadListView.listViewLayout>
+                        <lv:ListViewGridLayout scrollDirection="Vertical" spanCount="2"/>
+                        <!--<lv:ListViewStaggeredLayout scrollDirection="Vertical" spanCount="2"/>-->
+                    </lv:RadListView.listViewLayout>
+                    <lv:RadListView.itemTemplate>
+                            <GridLayout class="item-template-style" columns="*" rows="auto, auto, auto">
+                                <Image src="{{ image }}" height="120" rowspan="3" opacity="0" loaded="imageLoadedHandler" stretch="aspectFill"/>
+                                <GridLayout verticalAlignment="bottom" row="0" col="0" columns="*" rowspan="2">
+                                    <StackLayout class="newsDescBg" rowspan="2">
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label class="title" text="{{ abr_title + '...' }}" textWrap="true" />
+                                        <Label class="type" text="{{ 'Dans ' + decoded_name + ' le ' + formated_date }}" textWrap="true" />
+                                    </StackLayout>
+                                </GridLayout>
                             </GridLayout>
-                        </GridLayout>
-                </lv:RadListView.itemTemplate>
-            </lv:RadListView>
-            </GridLayout>
+                    </lv:RadListView.itemTemplate>
+                </lv:RadListView>
+                </GridLayout>
+                <debug:debugger />
+            </AbsoluteLayout>
         </nsDrawer:RadSideDrawer.mainContent>
     </nsDrawer:RadSideDrawer>
 </Page>

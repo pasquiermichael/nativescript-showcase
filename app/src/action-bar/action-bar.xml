@@ -1,6 +1,6 @@
 <ActionBar id="ab" loaded="onLoad" title="News" xmlns:rsdc="src/menus/controls">
     <StackLayout orientation="horizontal" horizontalAlignment="left">
-        <rsdc:side-menu-controls-bar name="eeee"/>
+        <rsdc:side-menu-controls classname="mainMenuBtnBar"/>
         <Label class="title" text="{{ title }}" horizontalAlignment="left"/>
     </StackLayout>
 </ActionBar>

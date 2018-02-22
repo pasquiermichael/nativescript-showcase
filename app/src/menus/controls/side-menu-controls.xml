@@ -1,0 +1,3 @@
+<Label text="&#xF106;" id="mainMenuBtn" class="{{'appIcon ' + className }}" horizontalAlignment="left" tap="toggleDrawer" loaded="onLoad" />
+
+

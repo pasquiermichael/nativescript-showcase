@@ -11,6 +11,7 @@ viewModel.getLastNews = function() {
         viewModel.set("news", result);
         return result;
     }, function(error){
+        console.log("inERROR");
     });
 };
 

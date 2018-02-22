@@ -5,6 +5,7 @@ var timerModule = require("timer");
 var router = require("../../../vidal/router/router");
 
 var newsModel = NewsViewModel.newsViewModel;
+var debug = require("~/vidal/debug/debugger");
 
 var pageData = new observableModule.fromObject({
     news: newsModel,
@@ -14,6 +15,7 @@ var pageData = new observableModule.fromObject({
 function onNavigatingTo(args) {
     page = args.object;
     pageData.set("isLoading", true);
+    //page.actionBarHidden = true;
 
     page.bindingContext = pageData;
     newsModel.empty();
@@ -24,6 +26,7 @@ function onNavigatingTo(args) {
         });
     }, 100);
 
+    debug.trace("News trace LGO");
 }
 
 exports.onLoad = function(args){
@@ -31,9 +34,10 @@ exports.onLoad = function(args){
 };
 
 exports.imageLoadedHandler = function(e){
+    console.log("imageLH");
     e.object.animate({
         opacity:1,
-        duration:500
+        duration:2000
     });
 };
 

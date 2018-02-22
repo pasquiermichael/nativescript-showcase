@@ -1,3 +1,31 @@
-<StackLayout id="debug-mini" fulled="{{ fulled }}" backgroundColor="green" width="{{ dwidth }}" height="{{ dheight }}" right="0" top="500">
-    <Label loaded="onLoad" tap="tap" text="D" />
-</StackLayout>
+<GridLayout columns="*, 50" rows="*, 50" width="100%" height="100%" visibility="visible" loaded="init">
+    <GridLayout id="debuggerMainContent" colSpan="2" col="0" columns="*" rows="*" row="0" rowSpan="2" visibility="visible" height="100%">
+        <TabView selectedIndex="0" class="fullScreen">
+            <TabView.items>
+                <TabViewItem title="Logs">
+                    <TabViewItem.view>
+                        <StackLayout>
+                            <Label text="{{ message }}" />
+                        </StackLayout>
+                    </TabViewItem.view>
+                </TabViewItem>
+                <TabViewItem title="Qry">
+                    <TabViewItem.view>
+                        <Label text="Label in Tab2" />
+                    </TabViewItem.view>
+                </TabViewItem>
+                <TabViewItem title="Err">
+                    <TabViewItem.view>
+                        <Label text="Label in Tab3" />
+                    </TabViewItem.view>
+                </TabViewItem>
+                <TabViewItem title="Perf">
+                    <TabViewItem.view>
+                        <Label text="Label in Tab4" />
+                    </TabViewItem.view>
+                </TabViewItem>
+            </TabView.items>
+        </TabView>
+    </GridLayout>1
+    <Button text="SHOWDEBUGGER" tap="toggle" col="1" row="1" background="blue" height="50" width="50"/>
+</GridLayout>
