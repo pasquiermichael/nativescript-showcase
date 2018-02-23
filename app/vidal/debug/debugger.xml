@@ -1,31 +1,57 @@
-<GridLayout columns="*, 50" rows="*, 50" width="100%" height="100%" visibility="visible" loaded="init">
+<GridLayout columns="*, 50" rows="*, 50" width="100%" height="100%" visibility="visible" loaded="init" unloaded="onUnloaded">
     <GridLayout id="debuggerMainContent" colSpan="2" col="0" columns="*" rows="*" row="0" rowSpan="2" visibility="visible" height="100%">
         <TabView selectedIndex="0" class="fullScreen">
             <TabView.items>
-                <TabViewItem title="Logs">
+                <TabViewItem title="{{ 'Logs&nbsp;' + '(' + LogType + ')' }}">
                     <TabViewItem.view>
-                        <StackLayout>
-                            <Label text="{{ message }}" />
-                        </StackLayout>
+                        <GridLayout id="traceContainer" rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                            <ListView row="0" items="{{ traces.LogType }}" colSpan="3">
+                                <ListView.itemTemplate>
+                                    <Label class="{{ type }}" text="{{ message }}" />
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <Button row="1" type="LogType" text="Clear" col="0" tap="clearTrace" />
+                        </GridLayout>
                     </TabViewItem.view>
                 </TabViewItem>
-                <TabViewItem title="Qry">
+                <TabViewItem title="{{ 'Err&nbsp;' + '(' + ErrType + ')' }}">
                     <TabViewItem.view>
-                        <Label text="Label in Tab2" />
+                        <GridLayout id="traceContainer2" rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                            <ListView row="0" items="{{ traces.ErrType }}" colSpan="3">
+                                <ListView.itemTemplate>
+                                    <Label class="{{ type }}" text="{{ message }}" />
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <Button row="1" type="ErrType" text="Clear" col="0" tap="clearTrace" />
+                        </GridLayout>
                     </TabViewItem.view>
                 </TabViewItem>
-                <TabViewItem title="Err">
+                <TabViewItem title="{{ 'Qry&nbsp;' + '(' + QryType + ')' }}">
                     <TabViewItem.view>
-                        <Label text="Label in Tab3" />
+                        <GridLayout id="traceContainer3" rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                            <ListView row="0" items="{{ traces.QryType }}" colSpan="3">
+                                <ListView.itemTemplate>
+                                    <Label class="{{ type }}" text="{{ message }}" />
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <Button row="1" type="QryType" text="Clear" col="0" tap="clearTrace" />
+                        </GridLayout>
                     </TabViewItem.view>
                 </TabViewItem>
-                <TabViewItem title="Perf">
+                <TabViewItem title="{{ 'Prf&nbsp;' + '(' + PrfType + ')' }}">
                     <TabViewItem.view>
-                        <Label text="Label in Tab4" />
+                        <GridLayout id="traceContainer4" rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                            <ListView row="0" items="{{ traces.PrfType }}" colSpan="3">
+                                <ListView.itemTemplate>
+                                    <Label class="{{ type }}" text="{{ message }}" />
+                                </ListView.itemTemplate>
+                            </ListView>
+                            <Button row="1" type="PrfType" text="Clear" col="0" tap="clearTrace" />
+                        </GridLayout>
                     </TabViewItem.view>
                 </TabViewItem>
             </TabView.items>
         </TabView>
-    </GridLayout>1
+    </GridLayout>
     <Button text="SHOWDEBUGGER" tap="toggle" col="1" row="1" background="blue" height="50" width="50"/>
 </GridLayout>

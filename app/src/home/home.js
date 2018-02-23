@@ -39,7 +39,7 @@ exports.onNavigatingTo = function(args) {
         toggleActHandler();
     }, ANIM_TOGGLE_TIME);
 
-    debug.trace("THIS IS WORKING !!!");
+    debug.trace("THIS IS WORKING !!!", debug.ERR_TRACE_TYPE);
 };
 
 exports.onLoad = function(e){
@@ -54,6 +54,7 @@ exports.onLoad = function(e){
         curve: enums.AnimationCurve.linear
     }]);
 
+    debug.trace("Onload");
     //api.callUrl(url).then(function(r){
     //    console.log("callDone");
     //});
