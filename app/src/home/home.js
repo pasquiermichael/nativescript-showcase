@@ -9,7 +9,6 @@ var animationModule = require("tns-core-modules/ui/animation");
 var api = require("~/vidal/api/api");
 var observableModule = require("data/observable");
 
-var platformModule = require("tns-core-modules/platform");
 var debug = require("~/vidal/debug/debugger");
 
 const ANIM_TOGGLE_TIME = 4000;
@@ -39,11 +38,10 @@ exports.onNavigatingTo = function(args) {
         toggleActHandler();
     }, ANIM_TOGGLE_TIME);
 
-    debug.trace("THIS IS WORKING !!!", debug.ERR_TRACE_TYPE);
+    debug.trace("THIS IS WORKING !!!", debug.T_ERR);
 };
 
 exports.onLoad = function(e){
-   //e.object.set("visibility", "collapse");
    var logo = page.getViewById("mainLogo");
 
     animationSet = new animationModule.Animation([{
@@ -55,9 +53,6 @@ exports.onLoad = function(e){
     }]);
 
     debug.trace("Onload");
-    //api.callUrl(url).then(function(r){
-    //    console.log("callDone");
-    //});
 
 };
 
@@ -76,42 +71,6 @@ exports.toggleAct = function(e){
     router.navigateTo("news_list");
 };
 
-exports.debugInit = function(e){
-    var realHeight = (platformModule.screen.mainScreen.heightPixels / platformModule.screen.mainScreen.scale);
-    var realWidth = (platformModule.screen.mainScreen.widthPixels / platformModule.screen.mainScreen.scale);
-
-    pageData.set("dbMTop", realHeight);
-
-    var debugMainContent = page.getViewById("debuggerMainContent");
-    //mieux dle faire sans animate mais est ce possibl ?
-    debugMainContent.animate({
-       translate: {x: realWidth, y: realHeight},
-       duration:100
-    });
-
-};
-
-exports.debugTap = function(e){
-    var realHeight = (platformModule.screen.mainScreen.heightPixels / platformModule.screen.mainScreen.scale);
-    var realWidth = (platformModule.screen.mainScreen.widthPixels / platformModule.screen.mainScreen.scale);
-
-    var debugMainContent = page.getViewById("debuggerMainContent");
-    var xPos = 0;
-    var yPos = 0;
-
-
-    if (pageData.dbOpened) {
-        xPos = realWidth;
-        yPos = realHeight;
-    }
-
-    debugMainContent.animate({
-        translate: {x: xPos, y: yPos},
-        duration:350
-    }).then(function(){
-        pageData.set("dbOpened", !pageData.dbOpened);
-    });
-};
 
 function toggleActHandler(p) {
     console.log("toggleActHandler");

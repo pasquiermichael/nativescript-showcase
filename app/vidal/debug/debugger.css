@@ -1,3 +1,4 @@
 TabView{background: #e8e7e7; font-size:16; tab-text-color: #FFFFFF; selected-tab-text-color: #ffba0c;}
-TabView Label{font-size:24; color:#000000;}
-TabView StackLayout{padding:10;}
+TabView Label{font-size:18; color:#000000;}
+TabView StackLayout, TabView GridLayout{padding:8;}
+Label.traceDate{font-size:12;}

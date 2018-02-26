@@ -1,0 +1,59 @@
+<TabView selectedIndex="0" class="fullScreen" loaded="onLoad">
+    <TabView.items>
+        <TabViewItem title="{{ 'Logs&nbsp;' + '(' + LogType + ')' }}">
+            <TabViewItem.view>
+                <GridLayout rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                    <ListView row="0" items="{{ traces.LogType }}" colSpan="3">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="30, *, *" rows="*, 20" >
+                                <Label class="{{ type }}" colSpan="3" text="{{ message }}" />
+                                <Label row="1" col="1" colSpan="2" class="traceDate" text="{{ date }}" />
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Button row="1" type="LogType" text="Clear" col="0" tap="clearTrace" />
+                    <Button row="1" type="" text="ClearALL" col="1" tap="clearTrace" />
+                </GridLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+        <TabViewItem title="{{ 'Err&nbsp;' + '(' + ErrType + ')' }}">
+            <TabViewItem.view>
+                <GridLayout rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                    <ListView row="0" items="{{ traces.ErrType }}" colSpan="3">
+                        <ListView.itemTemplate>
+                            <Label class="{{ type }}" text="{{ message }}" />
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Button row="1" type="ErrType" text="Clear" col="0" tap="clearTrace" />
+                    <Button row="1" type="" text="ClearALL" col="1" tap="clearTrace" />
+                </GridLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+        <TabViewItem title="{{ 'Qry&nbsp;' + '(' + QryType + ')' }}">
+            <TabViewItem.view>
+                <GridLayout rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                    <ListView row="0" items="{{ traces.QryType }}" colSpan="3">
+                        <ListView.itemTemplate>
+                            <Label class="{{ type }}" text="{{ message }}" />
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Button row="1" type="QryType" text="Clear" col="0" tap="clearTrace" />
+                    <Button row="1" type="" text="ClearALL" col="1" tap="clearTrace" />
+                </GridLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+        <TabViewItem title="{{ 'Prf&nbsp;' + '(' + PrfType + ')' }}">
+            <TabViewItem.view>
+                <GridLayout rows="*, 50" columns="*, *, *" width="100%" height="100%">
+                    <ListView row="0" items="{{ traces.PrfType }}" colSpan="3">
+                        <ListView.itemTemplate>
+                            <Label class="{{ type }}" text="{{ message }}" />
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <Button row="1" type="PrfType" text="Clear" col="0" tap="clearTrace" />
+                    <Button row="1" type="" text="ClearALL" col="1" tap="clearTrace" />
+                </GridLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+    </TabView.items>
+</TabView>
